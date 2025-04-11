@@ -1,0 +1,6 @@
+[ui]
+default-command = "log"
+
+[user]
+name = "Sandy Berkowitz"
+email = "sandyberko@outlook.com"
