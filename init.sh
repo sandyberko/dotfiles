@@ -43,8 +43,8 @@ EOF
 
 # Enable and start service
 sudo systemctl daemon-reload
-sudo systemctl --user enable code-server
-sudo systemctl --user start code-server
+systemctl --user enable code-server
+systemctl --user start code-server
 
 echo nushell...
 cargo binstall -y nu
