@@ -4,11 +4,11 @@ set -euox pipefail
 
 echo apt...
 sudo apt update
-sudo apt upgrade
-sudo apt install build-essential git
+sudo apt upgrade -y
+sudo apt install -y build-essential git
 
 echo rust...
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 rustup toolchain install stable
 rustup default stable
@@ -43,8 +43,8 @@ EOF
 
 # Enable and start service
 sudo systemctl daemon-reload
-sudo --user systemctl enable code-server
-sudo --user systemctl start code-server
+sudo systemctl --user enable code-server
+sudo systemctl --user start code-server
 
 echo nushell...
 cargo binstall -y nu
