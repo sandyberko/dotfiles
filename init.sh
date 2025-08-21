@@ -62,7 +62,7 @@ cd $HOME
 git init
 git switch -c main
 git remote add origin "https://github.com/sandyberko/dotfiles"
-git reses --hard HEAD
+git reset --hard HEAD
 git pull origin main --set-upstream
 
 print "🎉 Done!"
