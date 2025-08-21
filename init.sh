@@ -64,5 +64,8 @@ sudo systemctl daemon-reload
 systemctl --user enable code-server
 systemctl --user start code-server
 
+print "starship..."
+cargo binstall -y starship
+
 print "🎉 Done!"
 
