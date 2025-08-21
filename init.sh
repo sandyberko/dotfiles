@@ -57,4 +57,12 @@ cargo binstall -y nu
 command -v nu | sudo tee -a /etc/shells
 sudo chsh -s $(which nu) $USER
 
+print("git dotfiles...")
+cd $HOME
+git init
+git switch -c main
+git remote add origin "https://github.com/sandyberko/dotfiles"
+git reses --hard HEAD
+git pull origin main --set-upstream
+
 print("Done!")
