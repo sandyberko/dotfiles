@@ -1,30 +1,36 @@
 #!/usr/bin/env bash
 
-set -euox pipefail
+set -euo pipefail
 
-echo apt...
+print() {
+    local BLUE="\033[34m"
+    local RESET="\033[0m"
+    echo -e "${BLUE}$1${RESET}"
+}
+
+print("apt...")
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y build-essential git
 
-echo rust...
+print("rust...")
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 rustup toolchain install stable
 rustup default stable
 
-echo cargo binstall...
+print("cargo binstall...")
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
-echo jujutstu vcs...
+print("jujutsu vcs...")
 cargo binstall -y jj-cli
 
-echo vscode server...
+print"(vscode server...")
 curl -L --proto '=https' --tlsv1.2 -sSf \
 	'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-arm64' \
 	| sudo tar xvzf - -C /usr/local/bin code
 
-echo vscode service...
+print("vscode server service...")
 
 # Create systemd service
 mkdir -p $HOME/.local/share/systemd/user
@@ -46,9 +52,9 @@ sudo systemctl daemon-reload
 systemctl --user enable code-server
 systemctl --user start code-server
 
-echo nushell...
+print("nushell...")
 cargo binstall -y nu
 command -v nu | sudo tee -a /etc/shells
 sudo chsh -s $(which nu) $USER
 
-echo Done!
+print("Done!")
