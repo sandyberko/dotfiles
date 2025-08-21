@@ -5,7 +5,7 @@ set -euo pipefail
 print() {
     local BLUE="\033[34m"
     local RESET="\033[0m"
-    echo -e "${BLUE}$1${RESET}"
+    echo -e "🔵 ${BLUE}$1${RESET}"
 }
 
 print "apt..."
@@ -65,4 +65,4 @@ git remote add origin "https://github.com/sandyberko/dotfiles"
 git reses --hard HEAD
 git pull origin main --set-upstream
 
-print "Done!"
+print "🎉 Done!"
