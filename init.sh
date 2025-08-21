@@ -13,6 +13,14 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y build-essential git
 
+print "git dotfiles..."
+cd $HOME
+git init
+git switch -c main
+git remote add origin "https://github.com/sandyberko/dotfiles"
+git fetch origin main
+git reset --hard origin/main
+
 print "rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
@@ -31,22 +39,6 @@ curl -L --proto '=https' --tlsv1.2 -sSf \
 	| sudo tar xvzf - -C /usr/local/bin code
 
 print "vscode server service..."
-
-# Create systemd service
-mkdir -p $HOME/.local/share/systemd/user
-sudo tee $HOME/.local/share/systemd/user/code-server.service <<EOF
-[Unit]
-Description=code-server
-
-[Service]
-Type=simple
-TimeoutStartSec=0
-ExecStart=/usr/local/bin/code serve-web --without-connection-token
-
-[Install]
-WantedBy=default.target
-EOF
-
 # Enable and start service
 sudo systemctl daemon-reload
 systemctl --user enable code-server
@@ -56,13 +48,5 @@ print "nushell..."
 cargo binstall -y nu
 command -v nu | sudo tee -a /etc/shells
 sudo chsh -s $(which nu) $USER
-
-print "git dotfiles..."
-cd $HOME
-git init
-git switch -c main
-git remote add origin "https://github.com/sandyberko/dotfiles"
-git reset --hard HEAD
-git pull origin main --set-upstream
 
 print "🎉 Done!"
