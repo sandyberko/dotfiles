@@ -1,1 +1,10 @@
-/home/droid/.local/share/systemd/user/code-server.service
+[Unit]
+Description=code-server
+
+[Service]
+Type=simple
+TimeoutStartSec=0
+ExecStart=/usr/local/bin/code serve-web --without-connection-token
+
+[Install]
+WantedBy=default.target
