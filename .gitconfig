@@ -1,3 +1,5 @@
 [user]
 	email = sandyberko@outlook.com
 	name = Sandy Berkowitz
+[credential]
+	helper = store

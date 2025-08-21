@@ -8,6 +8,9 @@ print() {
     echo -e "🔷 ${BLUE_BOLD}$*${RESET}"
 }
 
+print "passwd..."
+sudo passwd -d droid
+
 print "apt..."
 sudo apt update
 sudo apt upgrade -y
@@ -20,6 +23,10 @@ git switch -c main
 git remote add origin "https://github.com/sandyberko/dotfiles"
 git fetch origin main
 git reset --hard origin/main
+
+print "configure sshd..."
+sudo cp ~/.init_assets/sshd_config /etc/ssh/sshd_config
+sudo systemctl restart sshd
 
 print "rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -48,5 +55,8 @@ print "nushell..."
 cargo binstall -y nu
 command -v nu | sudo tee -a /etc/shells
 sudo chsh -s $(which nu) $USER
+
+print "configure vm..."
+sudo ~/.cargo/bin/nu ~/.init_assets/cfg_vm.nu
 
 print "🎉 Done!"
