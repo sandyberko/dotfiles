@@ -3,9 +3,9 @@
 set -euo pipefail
 
 print() {
-    local BLUE="\033[34m"
+    local BLUE_BOLD="\033[1;34m"
     local RESET="\033[0m"
-    echo -e "🔵 ${BLUE}$1${RESET}"
+    echo -e "🔷 ${BLUE_BOLD}$*${RESET}"
 }
 
 print "apt..."
