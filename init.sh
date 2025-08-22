@@ -22,9 +22,9 @@ print "git dotfiles..."
 if [ -d ".git" ]; then
     echo "⚪ already exists - skipping"
 else
-    git switch -c main
     git init
-    git remote add origin "https://github.com/sandyberko/dotfiles"
+    git switch -c main
+	git remote add origin "https://github.com/sandyberko/dotfiles"
     git fetch origin main
     git reset --hard origin/main
 	git branch --set-upstream-to=origin/main main
