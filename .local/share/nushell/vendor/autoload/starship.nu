@@ -28,7 +28,7 @@ export-env { $env.STARSHIP_SHELL = "nu"; load-env {
 
     PROMPT_COMMAND_RIGHT: {||
         (
-            ^$"($nu.home-path).cargo/bin/starship" prompt
+            ^$"($nu.home-path)/.cargo/bin/starship" prompt
                 --right
                 --cmd-duration $env.CMD_DURATION_MS
                 $"--status=($env.LAST_EXIT_CODE)"
