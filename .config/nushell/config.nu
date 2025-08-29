@@ -18,4 +18,4 @@
 # them for future reference.
 $env.Path ++= [$"($nu.home_path)/.cargo/bin"]
 $env.config.show_banner = false
-source $"($nu.home_path)/.cargo/env.nu"
+source $"($nu.home-path)/.cargo/env.nu"
