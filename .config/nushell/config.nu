@@ -16,6 +16,6 @@
 #
 # You can remove these comments if you want or leave
 # them for future reference.
-$env.Path ++= [$"($nu.home_path)/.cargo/bin"]
+$env.Path ++= [$"($nu.home-path)/.cargo/bin"]
 $env.config.show_banner = false
 source $"($nu.home-path)/.cargo/env.nu"
