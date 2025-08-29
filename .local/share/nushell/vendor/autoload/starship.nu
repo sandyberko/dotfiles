@@ -5,7 +5,7 @@
 export-env { $env.STARSHIP_SHELL = "nu"; load-env {
     STARSHIP_SESSION_KEY: (random chars -l 16)
     PROMPT_MULTILINE_INDICATOR: (
-        ^($nu.home_path)/.cargo/bin/starship prompt --continuation
+        ^`($nu.home-path)/.cargo/bin/starship` prompt --continuation
     )
 
     # Does not play well with default character module.
@@ -28,7 +28,7 @@ export-env { $env.STARSHIP_SHELL = "nu"; load-env {
 
     PROMPT_COMMAND_RIGHT: {||
         (
-            ^($nu.home_path).cargo/bin/starship prompt
+            ^`($nu.home-path).cargo/bin/starship` prompt
                 --right
                 --cmd-duration $env.CMD_DURATION_MS
                 $"--status=($env.LAST_EXIT_CODE)"
