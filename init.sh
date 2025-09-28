@@ -11,7 +11,7 @@ print() {
 cd $HOME
 
 print "pacman..."
-pacman -Syu git curl
+pacman -Syu git base-devel
 
 print "git dotfiles..."
 if [ -d ".git" ]; then
