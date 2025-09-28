@@ -12,8 +12,8 @@ cd $HOME
 
 print "apt..."
 apt update
-apt upgrade -y
-apt install -y \
+yes | apt upgrade -y
+yes | apt install -y \
 	build-essential \
 	git \
 	rust \
