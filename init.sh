@@ -8,6 +8,8 @@ print() {
     echo -e "🔷 ${BLUE_BOLD}$*${RESET}"
 }
 
+alias sudo=''
+
 cd $HOME
 
 print "apt..."
