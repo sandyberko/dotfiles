@@ -34,8 +34,7 @@ else
 fi
 
 print "nushell..."
-command -v nu | sudo tee -a /etc/shells
-chsh -s $(which nu) $USER
+chsh -s nu $USER
 
 print "jujutsu vcs..."
 curl -L https://github.com/jj-vcs/jj/releases/download/v0.33.0/jj-v0.33.0-aarch64-unknown-linux-musl.tar.gz \
