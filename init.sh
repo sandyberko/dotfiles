@@ -12,14 +12,14 @@ cd $HOME
 
 print "apt..."
 apt update
-yes | apt upgrade -y
+yes | apt upgrade -y || true
 yes | apt install -y \
 	build-essential \
 	git \
 	rust \
 	nushell \
 	helix \
-	starship
+	starship || true
 
 print "git dotfiles..."
 if [ -d ".git" ]; then
@@ -34,7 +34,7 @@ else
 fi
 
 print "nushell..."
-chsh -s nu $USER
+chsh -s nu
 
 print "jujutsu vcs..."
 curl -L https://github.com/jj-vcs/jj/releases/download/v0.33.0/jj-v0.33.0-aarch64-unknown-linux-musl.tar.gz \

@@ -19,3 +19,4 @@
 $env.Path ++= [$"($nu.home-path)/.cargo/bin"]
 $env.config.show_banner = false
 source $"($nu.home-path)/.cargo/env.nu"
+$env.EDITOR = "hx"
