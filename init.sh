@@ -13,7 +13,7 @@ cd $HOME
 print "apt..."
 apt update
 apt upgrade -y
-apt install -y build-essential git
+apt install -y build-essential git rust
 
 print "git dotfiles..."
 if [ -d ".git" ]; then
@@ -26,12 +26,6 @@ else
     git reset --hard origin/main
 	git branch --set-upstream-to=origin/main main
 fi
-
-print "rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-. "$HOME/.cargo/env"
-rustup toolchain install stable
-rustup default stable
 
 print "cargo binstall..."
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
