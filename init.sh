@@ -39,9 +39,6 @@ cargo binstall -y nu
 command -v nu | sudo tee -a /etc/shells
 chsh -s $(which nu) $USER
 
-print "configure vm..."
-~/.cargo/bin/nu ~/.init_assets/cfg_vm.nu
-
 print "jujutsu vcs..."
 cargo binstall -y jj-cli
 
