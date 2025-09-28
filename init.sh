@@ -10,9 +10,6 @@ print() {
 
 cd $HOME
 
-print "passwd..."
-sudo passwd -d droid
-
 print "apt..."
 sudo apt update
 sudo apt upgrade -y
@@ -29,10 +26,6 @@ else
     git reset --hard origin/main
 	git branch --set-upstream-to=origin/main main
 fi
-
-print "configure sshd..."
-sudo cp ~/.init_assets/sshd_config /etc/ssh/sshd_config
-sudo systemctl restart sshd
 
 print "rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
