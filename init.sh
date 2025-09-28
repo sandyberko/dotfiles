@@ -11,7 +11,7 @@ print() {
 cd $HOME
 
 print "pacman..."
-sudo pacman -Syu git curl
+pacman -Syu git curl
 
 print "git dotfiles..."
 if [ -d ".git" ]; then
@@ -37,10 +37,10 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 print "nushell..."
 cargo binstall -y nu
 command -v nu | sudo tee -a /etc/shells
-sudo chsh -s $(which nu) $USER
+chsh -s $(which nu) $USER
 
 print "configure vm..."
-sudo ~/.cargo/bin/nu ~/.init_assets/cfg_vm.nu
+~/.cargo/bin/nu ~/.init_assets/cfg_vm.nu
 
 print "jujutsu vcs..."
 cargo binstall -y jj-cli
@@ -51,7 +51,7 @@ curl -L --proto '=https' --tlsv1.2 -sSf \
 	| sudo tar xvzf - -C /usr/local/bin code
 
 print "vscode server service..."
-sudo systemctl daemon-reload
+systemctl daemon-reload
 systemctl --user enable code-server
 systemctl --user start code-server
 
