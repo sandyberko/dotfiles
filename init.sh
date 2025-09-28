@@ -10,13 +10,10 @@ print() {
 
 cd $HOME
 
-print "passwd..."
-sudo passwd -d droid
-
 print "apt..."
-sudo apt update
-sudo apt upgrade -y
-sudo apt install -y build-essential git
+apt update
+apt upgrade -y
+apt install -y build-essential git
 
 print "git dotfiles..."
 if [ -d ".git" ]; then
@@ -30,10 +27,6 @@ else
 	git branch --set-upstream-to=origin/main main
 fi
 
-print "configure sshd..."
-sudo cp ~/.init_assets/sshd_config /etc/ssh/sshd_config
-sudo systemctl restart sshd
-
 print "rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
@@ -46,10 +39,7 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 print "nushell..."
 cargo binstall -y nu
 command -v nu | sudo tee -a /etc/shells
-sudo chsh -s $(which nu) $USER
-
-print "configure vm..."
-sudo ~/.cargo/bin/nu ~/.init_assets/cfg_vm.nu
+chsh -s $(which nu) $USER
 
 print "jujutsu vcs..."
 cargo binstall -y jj-cli
@@ -60,7 +50,7 @@ curl -L --proto '=https' --tlsv1.2 -sSf \
 	| sudo tar xvzf - -C /usr/local/bin code
 
 print "vscode server service..."
-sudo systemctl daemon-reload
+systemctl daemon-reload
 systemctl --user enable code-server
 systemctl --user start code-server
 
