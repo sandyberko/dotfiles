@@ -13,7 +13,13 @@ cd $HOME
 print "apt..."
 apt update
 apt upgrade -y
-apt install -y build-essential git rust
+apt install -y \
+	build-essential \
+	git \
+	rust \
+	nushell \
+	helix \
+	starship
 
 print "git dotfiles..."
 if [ -d ".git" ]; then
@@ -27,32 +33,13 @@ else
 	git branch --set-upstream-to=origin/main main
 fi
 
-print "cargo binstall..."
-curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-
 print "nushell..."
-cargo binstall -y nu
 command -v nu | sudo tee -a /etc/shells
 chsh -s $(which nu) $USER
 
-print "configure vm..."
-~/.cargo/bin/nu ~/.init_assets/cfg_vm.nu
-
 print "jujutsu vcs..."
-cargo binstall -y jj-cli
-
-print "vscode server..."
-curl -L --proto '=https' --tlsv1.2 -sSf \
-	'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-arm64' \
-	| sudo tar xvzf - -C /usr/local/bin code
-
-print "vscode server service..."
-systemctl daemon-reload
-systemctl --user enable code-server
-systemctl --user start code-server
-
-print "starship..."
-cargo binstall -y starship
+curl -L https://github.com/jj-vcs/jj/releases/download/v0.33.0/jj-v0.33.0-aarch64-unknown-linux-musl.tar.gz \
+    | tar -xzf - -C ~/.cargo/bin/
 
 print "🎉 Done!"
 
