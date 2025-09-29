@@ -17,6 +17,7 @@ yes | apt install -y \
 	build-essential \
 	git \
 	rust \
+	rust-analyzer \
 	nushell \
 	helix \
 	starship || true
