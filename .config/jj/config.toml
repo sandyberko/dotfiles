@@ -1,5 +1,5 @@
 [ui]
-default-command = "log"
+default-command = "status"
 
 [user]
 name = "Sandy Berkowitz"

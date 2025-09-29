@@ -22,15 +22,17 @@ yes | apt install -y \
 	starship || true
 
 print "git dotfiles..."
-if [ -d ".git" ]; then
+dotdir="$HOME/.dotfiles"
+if [ -d "$dotdir" ]; then
     echo "⚪ already exists - skipping"
 else
-    git init
-    git switch -c main
-	git remote add origin "https://github.com/sandyberko/dotfiles"
-    git fetch origin main
-    git reset --hard origin/main
-	git branch --set-upstream-to=origin/main main
+    git init --bare $dotdir
+    alias cfg='/usr/bin/git --git-dir=$dotdir --work-tree=$HOME'
+    cfg switch -c termux
+    cfg remote add origin "https://github.com/sandyberko/dotfiles"
+    cfg fetch origin main
+    cfg reset --hard origin/termux
+    cfg branch --set-upstream-to=origin/termux termux
 fi
 
 print "nushell..."
@@ -39,6 +41,7 @@ chsh -s nu
 print "jujutsu vcs..."
 curl -L https://github.com/jj-vcs/jj/releases/download/v0.33.0/jj-v0.33.0-aarch64-unknown-linux-musl.tar.gz \
     | tar -xzf - -C ~/.cargo/bin/
+~/.cargo/bin/jj git init --git-repo $dotdir
 
 print "🎉 Done!"
 
