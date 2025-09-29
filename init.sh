@@ -33,6 +33,7 @@ else
     cfg fetch origin main
     cfg reset --hard origin/termux
     cfg branch --set-upstream-to=origin/termux termux
+    cfg config --local status.showUntrackedFiles no
 fi
 
 print "nushell..."
@@ -42,6 +43,7 @@ print "jujutsu vcs..."
 curl -L https://github.com/jj-vcs/jj/releases/download/v0.33.0/jj-v0.33.0-aarch64-unknown-linux-musl.tar.gz \
     | tar -xzf - -C ~/.cargo/bin/
 ~/.cargo/bin/jj git init --git-repo $dotdir
+~/.cargo/bin/jj config set snapshot.auto-track "none()" --repo
 
 print "🎉 Done!"
 
