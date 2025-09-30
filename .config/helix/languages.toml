@@ -1,0 +1,5 @@
+[[language]]
+name = "anecte"
+scope = "source.anecte"
+file-types = ["anct"]
+grammar = "scheme"
