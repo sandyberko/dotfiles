@@ -1,7 +1,15 @@
 theme = "carbon"
 
+[editor]
+default-line-ending = "lf"
+
 [editor.file-picker]
 hidden = false
 
 [editor.lsp]
 display-progress-messages = true
+
+[editor.cursor-shape]
+normal = "bar"
+insert = "bar"
+select = "underline"
