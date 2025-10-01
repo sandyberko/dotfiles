@@ -18,6 +18,5 @@
 # them for future reference.
 $env.Path ++= [$"($nu.home-path)/.cargo/bin"]
 $env.config.show_banner = false
-source $"($nu.home-path)/.cargo/env.nu"
 $env.EDITOR = "hx"
 alias cfg = git --git-dir=($env.HOME)/.dotfiles/ --work-tree=($env.HOME)
