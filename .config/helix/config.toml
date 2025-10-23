@@ -8,6 +8,10 @@ shell = ["nu", "-c"]
 cursor-line = "hint"
 other-lines = "warning"
 
+[editor.statusline]
+right = ["workspace-diagnostics", "selections", "register", "position", "file-encoding"]
+mode.insert = "✏️ INS"
+
 [editor.lsp]
 display-progress-messages = true
 
