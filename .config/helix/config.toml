@@ -2,9 +2,11 @@ theme = "carbon"
 
 [editor]
 default-line-ending = "lf"
+shell = ["nu", "-c"]
 
-[editor.file-picker]
-hidden = false
+[editor.inline-diagnostics]
+cursor-line = "hint"
+other-lines = "warning"
 
 [editor.lsp]
 display-progress-messages = true
