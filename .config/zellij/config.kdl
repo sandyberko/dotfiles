@@ -6,3 +6,4 @@ ui {
         rounded_corners true
     }
 }
+default_shell "nu"
