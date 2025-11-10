@@ -1,27 +1,32 @@
-# config.nu
-#
-# Installed by:
-# version = "0.103.0"
-#
-# This file is used to override default Nushell settings, define
-# (or import) custom commands, or run any other startup tasks.
-# See https://www.nushell.sh/book/configuration.html
-#
-# This file is loaded after env.nu and before login.nu
-#
-# You can open this file in your default editor using:
-# config nu
-#
-# See `help config nu` for more options
-#
-# You can remove these comments if you want or leave
-# them for future reference.
-$env.Path ++= [$"($nu.home-path)/.cargo/bin"]
-$env.config.show_banner = false
-$env.EDITOR = "hx"
+$env.EDITOR = "helix"
+alias hx = helix
 alias cfg = git --git-dir=($env.HOME)/.dotfiles/ --work-tree=($env.HOME)
 
+# Rust
+$env.Path ++= [$"($nu.home-path)/.cargo/bin"]
+$env.CARGO_TARGET_DIR = ($env.HOME)/.cargo/target
+
 # android dev
-$env.JAVA_HOME = ($env.PREFIX)/lib/jvm/java-17-openjdk
-$env.ANDROID_HOME = $"($env.HOME)/android/sdk"
-$env.Path ++= [$"($env.ANDROID_HOME)/cmdline-tools/latest/bin"]
+# $env.JAVA_HOME = ($env.PREFIX)/lib/jvm/java-17-openjdk
+# $env.ANDROID_HOME = $"($env.HOME)/android/sdk"
+# $env.Path ++= [$"($env.ANDROID_HOME)/cmdline-tools/latest/bin"]
+
+$env.config.show_banner = false
+
+$env.config.edit_mode = "vi"
+$env.config.keybindings ++= [
+  {
+      name: history_hint_word_complete
+      modifier: alt
+      keycode: Char_L
+      mode: [vi_normal, vi_insert]
+      event: { send: HistoryHintWordComplete }
+  },
+  {
+      name: delete_word
+      modifier: alt
+      keycode: Char_H
+      mode: [vi_normal, vi_insert]
+      event: { edit: DeleteWord }
+  }
+]
