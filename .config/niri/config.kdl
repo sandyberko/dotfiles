@@ -38,29 +38,61 @@ output "eDP-1" {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
 
 binds {
-    MOD+SHIFT+ESCAPE                     { show-hotkey-overlay; }
+     // Application Launchers
+    Mod+Space hotkey-overlay-title="Application Launcher" {
+        spawn "dms" "ipc" "call" "spotlight" "toggle";
+    }
+    Mod+V hotkey-overlay-title="Clipboard Manager" {
+        spawn "dms" "ipc" "call" "clipboard" "toggle";
+    }
+    Mod+M hotkey-overlay-title="Task Manager" {
+        spawn "dms" "ipc" "call" "processlist" "toggle";
+    }
+    Mod+Comma hotkey-overlay-title="Settings" {
+        spawn "dms" "ipc" "call" "settings" "toggle";
+    }
+    Mod+N hotkey-overlay-title="Notification Center" {
+        spawn "dms" "ipc" "call" "notifications" "toggle";
+    }
+    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
+        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
+    }
+
+    // Security
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" {
+        spawn "dms" "ipc" "call" "lock" "lock";
+    }
+
+    // Audio Controls
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "increment" "3";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "decrement" "3";
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "mute";
+    }
+
+    // Brightness Controls
+    XF86MonBrightnessUp allow-when-locked=true {
+       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
+    }
+        
+    MOD+SHIFT+ESCAPE { show-hotkey-overlay; }
 
     // ─── Applications ───
     MOD+RETURN hotkey-overlay-title="Open Terminal" {
         spawn-sh "wezterm";
     }
-    MOD+SPACE hotkey-overlay-title="Open App Launcher" {
-         spawn-sh "qs -c noctalia-shell ipc call launcher toggle";
-    }
-    MOD+B hotkey-overlay-title="Open Browser: chrome" {
+    MOD+B hotkey-overlay-title="Open Browser" {
          spawn-sh "/opt/google/chrome/chrome";
     }
     MOD+E hotkey-overlay-title="File Manager" {
          spawn-sh "nautilus";
-    }
-    MOD+ALT+L hotkey-overlay-title="Lock Screen" {
-        spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"
-    }
-    MOD+Z hotkey-overlay-title="Control Center" {
-        spawn-sh "qs -c noctalia-shell ipc call controlCenter toggle"
-    }
-    MOD+V hotkey-overlay-title="Clipboard History" {
-        spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"
     }
     CTRL+SHIFT+ESCAPE hotkey-overlay-title="Mission Center" {
         spawn-sh "missioncenter";
@@ -70,22 +102,11 @@ binds {
     // ─── Audio Controls ───
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
-    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute                       allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute                    allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
     XF86AudioNext                       allow-when-locked=true { spawn-sh "playerctl next"; }
     XF86AudioPause                      allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioPlay                       allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioPrev                       allow-when-locked=true { spawn-sh "playerctl previous"; }
-
-    // other
-    XF86MonBrightnessUp allow-when-locked=true {
-        spawn-sh "qs -c noctalia-shell ipc call brightness increase"
-    }
-    XF86MonBrightnessDown allow-when-locked=true {
-        spawn-sh "qs -c noctalia-shell ipc call brightness decrease"
-    }
 
     // ─── Window Movement and Focus ───
     MOD+Q                               { close-window; }
@@ -199,39 +220,27 @@ binds {
     // spawn-sh-at-startup "swww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
     // spawn-sh-at-startup "waybar" // Launch waybar
     // spawn-at-startup "qs" "-c" "noctalia-shell"
+
+spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+spawn-at-startup "dms" "run"
     
-    prefer-no-csd // Disable program decorations
-    screenshot-path null // Disable screenshot saving
+prefer-no-csd
+screenshot-path null // Disable screenshot saving
 
-// ────────────── Layout Settings ──────────────
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+layout {
+    gaps 5
+    background-color "transparent"
+}
 
-    layout {
-        gaps 8 // Gap between windows
-        center-focused-column "never" // Don’t auto-center focused column
+layer-rule {
+    match namespace="^quickshell$"
+    place-within-backdrop true
+}
 
-        preset-column-widths {
-            proportion 0.33333
-            proportion 0.5
-            proportion 0.66667
-        }
-
-        focus-ring {
-            width 3
-            active-color "#00ac89"
-            inactive-color "#505050"
-        }
-
-        shadow {
-            softness 30
-            spread 5
-            offset x=0 y=5
-            color "#0007"
-        }
-
-        struts {}
-    }
-
+layer-rule {
+    match namespace="dms:blurwallpaper"
+    place-within-backdrop true
+}
 // ────────────── Animation Settings ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
     animations {
@@ -267,49 +276,62 @@ binds {
         }
     }
 
-// ────────────── Window Rules ──────────────
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
-    window-rule {
-        geometry-corner-radius 20 // Set every window radius to 20
-        clip-to-geometry true
-    }
+// Twitter
+window-rule {
+    match app-id="^chrome-lodlkdfmihgonocnmddehnfgiljnadcf-Default$"
+    default-column-width { fixed 565; }
+}
 
-    // Twitter
-    window-rule {
-        match app-id="^chrome-lodlkdfmihgonocnmddehnfgiljnadcf-Default$"
-        default-column-width { fixed 565; }
-    }
+// MultiViewer
+window-rule {
+    match app-id="^MultiViewer$" title="^(Lando Norris|Track Map) — MultiViewer$"
+    open-floating true
+    default-column-width { proportion 0.25; }
+    default-window-height { proportion 0.33; }
+}
 
-    // Wezterm
-    window-rule {
-        match app-id=r#"^org\.wezfurlong\.wezterm$"#
-        default-column-width {}
-    }
+window-rule {
+    match app-id="^MultiViewer$" title="^F1 Live — MultiViewer$"
+    open-fullscreen true
+}
 
-    // MultiViewer
-    window-rule {
-        match app-id="^MultiViewer$" title="^(Lando Norris|Track Map) — MultiViewer$"
-        open-floating true
-        default-column-width { proportion 0.25; }
-        default-window-height { proportion 0.33; }
-    }
-    window-rule {
-        match app-id="^MultiViewer$" title="^F1 Live — MultiViewer$"
-        open-fullscreen true
-    }
+window-rule {
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    draw-border-with-background false
+    default-column-width {}
+}
+
+window-rule {
+    match is-active=false
+    opacity 0.9
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
 
 // ────────────── Environment Variables ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
 
-    environment {
-        DISPLAY ":1"
-        ELECTRON_OZONE_PLATFORM_HINT "auto"
-        QT_QPA_PLATFORM "wayland"
-        QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-        XDG_SESSION_TYPE "wayland"
-        XDG_CURRENT_DESKTOP "niri"
-    }
+environment {
+    DISPLAY ":1"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    QT_QPA_PLATFORM "wayland"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    XDG_SESSION_TYPE "wayland"
+    XDG_CURRENT_DESKTOP "niri"
+    QT_QPA_PLATFORMTHEME "gtk3"
+    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+}
 
     hotkey-overlay {
         skip-at-startup
