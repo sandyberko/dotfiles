@@ -1,3 +1,4 @@
+# rust
 [[language]]
 name = "anecte"
 scope = "source.anecte"
@@ -6,3 +7,17 @@ grammar = "scheme"
 
 [language-server.rust-analyzer.config]
 check = { command = "clippy" }
+
+# kotlin
+[[language]]
+name = "kotlin"
+scope = "source.kotlin"
+file-types = ["kt", "kts"]
+roots = ["settings.gradle", "settings.gradle.kts"]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "kotlin-lsp" ]
+
+[language-server]
+kotlin-lsp = { command = "kotlin-lsp", args = ["--stdio"] }

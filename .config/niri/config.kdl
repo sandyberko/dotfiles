@@ -30,7 +30,7 @@ input {
 
 output "eDP-1" {
     mode "1920x1080@144.003"
-    scale 1
+    scale 1.25
     variable-refresh-rate
 }
 
@@ -323,7 +323,6 @@ window-rule {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
 
 environment {
-    DISPLAY ":1"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     QT_QPA_PLATFORM "wayland"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
