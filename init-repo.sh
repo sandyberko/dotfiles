@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 print() {
@@ -8,19 +7,33 @@ print() {
     echo -e "🔷 ${BLUE_BOLD}$*${RESET}"
 }
 
+# You want this available globally
 dotdir="$HOME/.dotfiles"
+GIT_BIN="$(command -v git)"
 
-print "dotfiles git repo..."
+# Define cfg so the user can use it after sourcing this script
+cfg() {
+    "$GIT_BIN" --git-dir="$dotdir" --work-tree="$HOME" "$@"
+}
 
-if [ -d "$dotdir" ]; then
-    echo "⚪ already exists - skipping"
+print "Setting up bare dotfiles repository…"
+
+if [[ ! -d "$dotdir" || ! -f "$dotdir/HEAD" ]]; then
+    print "Cloning bare repo into $dotdir"
+    rm -rf "$dotdir"
+    "$GIT_BIN" clone --bare "https://github.com/sandyberko/dotfiles" "$dotdir"
+
+    print "Checking out 'main' into \$HOME"
+    if ! cfg checkout main; then
+        echo "⚠️  Checkout failed due to conflicts in your home directory."
+        echo "    Fix conflicts and run this script again."
+        return 1
+    fi
+
+    cfg branch --set-upstream-to=origin/main main
+    cfg config status.showUntrackedFiles no
 else
-    git init --bare $dotdir
-    alias cfg='/usr/bin/git --git-dir=$dotdir --work-tree=$HOME'
-    cfg switch -c termux
-    cfg remote add origin "https://github.com/sandyberko/dotfiles"
-    cfg fetch origin main
-    cfg reset --hard origin/termux
-    cfg branch --set-upstream-to=origin/termux termux
-    cfg config --local status.showUntrackedFiles no
+    print "⚪ Dotfiles repo already exists — skipping clone"
 fi
+
+print "🎉 dotfiles setup complete"
