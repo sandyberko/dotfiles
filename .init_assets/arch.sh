@@ -3,7 +3,7 @@
 source ~/init-repo.sh
 
 print "pacman..."
-pacman -Syu \
+sudo pacman -Syu \
   base-devel \
   git \
   jujutsu \
@@ -12,7 +12,7 @@ pacman -Syu \
   starship \
   rustup
 
-command -v nu | tee -a /etc/shells
-chsh -s $(command -v nu)
+command -v nu | sudo tee -a /etc/shells
+sudo chsh -s $(command -v nu) $USER
 
 print "arch setup done!"
