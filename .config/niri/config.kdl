@@ -31,7 +31,7 @@ input {
 output "eDP-1" {
     mode "1920x1080@144.003"
     scale 1.25
-    variable-refresh-rate
+    // variable-refresh-rate
 }
 
 // ────────────── Keybindings ──────────────
@@ -307,11 +307,6 @@ window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     draw-border-with-background false
     default-column-width {}
-}
-
-window-rule {
-    match is-active=false
-    opacity 0.9
 }
 
 window-rule {
