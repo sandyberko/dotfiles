@@ -3,13 +3,13 @@ alias hx = helix
 alias cfg = git --git-dir=($env.HOME)/.dotfiles/ --work-tree=($env.HOME)
 
 # Rust
-$env.Path ++= [$"($nu.home-path)/.cargo/bin"]
+$env.Path ++= [$"($env.HOME)/.cargo/bin"]
 $env.CARGO_TARGET_DIR = ($env.HOME)/.cargo/target
 
 # android dev
-# $env.JAVA_HOME = ($env.PREFIX)/lib/jvm/java-17-openjdk
-# $env.ANDROID_HOME = $"($env.HOME)/android/sdk"
-# $env.Path ++= [$"($env.ANDROID_HOME)/cmdline-tools/latest/bin"]
+$env.JAVA_HOME = "/usr/lib/jvm/java-17-openjdk"
+$env.ANDROID_HOME = $"/opt/android-sdk"
+$env.Path ++= [$"($env.ANDROID_HOME)/platform-tools/"]
 
 $env.config.show_banner = false
 
