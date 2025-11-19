@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Helix
+GenericName=Text Editor
+Comment=Edit text files (with :line:column support)
+TryExec=editor.nu
+Exec=editor.nu %U
+Terminal=true
+Type=Application
+Keywords=Text;editor;
+Icon=helix
+Categories=Utility;TextEditor;ConsoleOnly
+StartupNotify=false
+MimeType=x-scheme-handler/x-editor;

@@ -1,3 +1,5 @@
+$env.PATH ++= [$"($env.HOME)/.local/bin/"]
+
 $env.EDITOR = "helix"
 alias hx = helix
 alias cfg = git --git-dir=($env.HOME)/.dotfiles/ --work-tree=($env.HOME)
