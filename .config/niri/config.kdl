@@ -34,55 +34,15 @@ output "eDP-1" {
     // variable-refresh-rate
 }
 
-// ────────────── Keybindings ──────────────
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+// ────────────── Keybindings ──────────────a
+// https://github.com/YaLTeR/niri/wiki/Configuratlion:-Key-Bindings
 
 binds {
-     // Application Launchers
-    Mod+Space hotkey-overlay-title="Application Launcher" {
-        spawn "dms" "ipc" "call" "spotlight" "toggle";
-    }
-    Mod+V hotkey-overlay-title="Clipboard Manager" {
-        spawn "dms" "ipc" "call" "clipboard" "toggle";
-    }
-    Mod+M hotkey-overlay-title="Task Manager" {
-        spawn "dms" "ipc" "call" "processlist" "toggle";
-    }
-    Mod+Comma hotkey-overlay-title="Settings" {
-        spawn "dms" "ipc" "call" "settings" "toggle";
-    }
-    Mod+N hotkey-overlay-title="Notification Center" {
-        spawn "dms" "ipc" "call" "notifications" "toggle";
-    }
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-    }
-
-    // Security
-    Mod+Alt+L hotkey-overlay-title="Lock Screen" {
-        spawn "dms" "ipc" "call" "lock" "lock";
-    }
-
-    // Audio Controls
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "increment" "3";
-    }
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "decrement" "3";
-    }
-    XF86AudioMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "mute";
-    }
-
-    // Brightness Controls
-    XF86MonBrightnessUp allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
-    }
-    XF86MonBrightnessDown allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
-    }
-        
     MOD+SHIFT+ESCAPE { show-hotkey-overlay; }
+
+    MOD+A hotkey-overlay-title="Power Menu" {
+        spawn "dms" "ipc" "call" "powermenu" "toggle"
+    }
 
     // ─── Applications ───
     MOD+RETURN hotkey-overlay-title="Open Terminal" {
@@ -220,61 +180,6 @@ spawn-at-startup "dms" "run"
 prefer-no-csd
 screenshot-path null // Disable screenshot saving
 
-layout {
-    gaps 5
-    background-color "transparent"
-
-    preset-column-widths {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
-    }
-}
-
-layer-rule {
-    match namespace="^quickshell$"
-    place-within-backdrop true
-}
-
-layer-rule {
-    match namespace="dms:blurwallpaper"
-    place-within-backdrop true
-}
-// ────────────── Animation Settings ──────────────
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
-    animations {
-        workspace-switch {
-            spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
-        }
-        window-open {
-            duration-ms 200
-            curve "ease-out-quad"
-        }
-        window-close {
-            duration-ms 200
-            curve "ease-out-cubic"
-        }
-        horizontal-view-movement {
-            spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
-        }
-        window-movement {
-            spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
-        }
-        window-resize {
-            spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
-        }
-        config-notification-open-close {
-            spring damping-ratio=0.6 stiffness=1200 epsilon=0.001
-        }
-        screenshot-ui-open {
-            duration-ms 300
-            curve "ease-out-quad"
-        }
-        overview-open-close {
-            spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
-        }
-    }
-
 // Picture-in-picture
 window-rule {
     match title="^Picture-in-picture$"
@@ -282,6 +187,7 @@ window-rule {
     open-focused false
     default-floating-position x=0 y=0 relative-to="top-right"
 }
+
 // Twitter
 window-rule {
     match app-id="^chrome-lodlkdfmihgonocnmddehnfgiljnadcf-Default$"
@@ -313,13 +219,7 @@ window-rule {
     scroll-factor 0.25
 }
 
-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
-
 // ────────────── Environment Variables ──────────────
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -331,6 +231,11 @@ environment {
     QT_QPA_PLATFORMTHEME_QT6 "gtk3"
 }
 
-    hotkey-overlay {
-        skip-at-startup
-    }
+hotkey-overlay {
+    skip-at-startup
+}
+
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/binds.kdl"
+include "dms/alttab.kdl"
