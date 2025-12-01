@@ -213,6 +213,7 @@ binds {
 }
 
 // ────────────── Startup Applications ──────────────
+spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &"
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 spawn-at-startup "dms" "run"
     
@@ -288,19 +289,14 @@ window-rule {
 }
 
 // MultiViewer
-// window-rule {
-//     // match title="Lando Norris"
-//     // match app-id="^MultiViewer$" title="^(Lando Norris|Track Map) — MultiViewer$"
-//     match app-id="^MultiViewer$"
-//     open-floating true
-//     default-column-width { proportion 0.25; }
-//     default-window-height { proportion 0.33; }
-// }
+window-rule {
+    match app-id="^MultiViewer$"
 
-// window-rule {
-//     match app-id="^MultiViewer$" title="^F1 Live — MultiViewer$"
-//     open-fullscreen true
-// }
+    open-floating true
+    default-floating-position x=0 y=0 relative-to="top-right"
+    default-column-width { proportion 0.25; }
+    default-window-height { proportion 0.33; }
+}
 
 window-rule {
     match app-id=r#"^org\.gnome\."#
