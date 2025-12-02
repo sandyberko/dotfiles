@@ -194,6 +194,11 @@ window-rule {
     default-column-width { fixed 565; }
 }
 
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
 // MultiViewer
 window-rule {
     match app-id="^MultiViewer$"
