@@ -14,6 +14,7 @@ input {
     }
 
     touchpad {
+        off
         tap // Enable tap-to-click
         natural-scroll // Enable natural (macOS-style) scrolling
         scroll-factor 0.1
@@ -221,7 +222,7 @@ window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     draw-border-with-background false
     default-column-width {}
-    scroll-factor 0.25
+    scroll-factor 0.5
 }
 
 // ────────────── Environment Variables ──────────────
