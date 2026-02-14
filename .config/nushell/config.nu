@@ -31,3 +31,8 @@ $env.config.keybindings ++= [
       event: { edit: DeleteWord }
   }
 ]
+
+def --env mkcd [directory: path] {
+    mkdir $directory
+    cd $directory
+}

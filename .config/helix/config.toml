@@ -19,3 +19,6 @@ display-progress-messages = true
 normal = "bar"
 insert = "bar"
 select = "underline"
+
+[keys.normal]
+C-a = "completion"

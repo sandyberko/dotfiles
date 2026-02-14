@@ -14,7 +14,7 @@ input {
     }
 
     touchpad {
-        off
+        // off
         tap // Enable tap-to-click
         natural-scroll // Enable natural (macOS-style) scrolling
         scroll-factor 0.1
@@ -33,6 +33,13 @@ output "eDP-1" {
     mode "1920x1080@144.003"
     scale 1.25
     // variable-refresh-rate
+}
+
+// virtual display for Apollo/Sunshine
+output "HDMI-A-1" {
+    mode "3840x2160@120.00"
+    scale 1.5
+    variable-refresh-rate
 }
 
 // ────────────── Keybindings ──────────────a
@@ -245,3 +252,5 @@ include "dms/colors.kdl"
 include "dms/layout.kdl"
 include "dms/binds.kdl"
 include "dms/alttab.kdl"
+
+include "dms/outputs.kdl"
