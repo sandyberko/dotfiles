@@ -36,3 +36,4 @@ def --env mkcd [directory: path] {
     mkdir $directory
     cd $directory
 }
+source "~/.cargo/env.nu"

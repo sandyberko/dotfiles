@@ -7,5 +7,3 @@ print() {
     local RESET="\033[0m"
     echo -e "🔷 ${BLUE_BOLD}$*${RESET}"
 }
-
-dotdir="$HOME/.dotfiles"
