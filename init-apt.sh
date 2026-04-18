@@ -14,6 +14,11 @@ yes | sudo apt install -y \
 	curl \
 	|| true
 
+print "dotfiles..."
+git clone https://github.com/sandyberko/dotfiles
+cd dotfiles
+stow */
+
 print "rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
@@ -24,17 +29,13 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 print "nushell..."
 cargo binstall nu
 sudo add-shell $HOME/.cargo/bin/nu
-sudo chsh -s $HOME/.cargo/bin/nu $(whoami) 
+sudo chsh -s $HOME/.cargo/bin/nu $USER 
 
 print "starship..."
 cargo binstall starship
 
 print "helix..."
 cargo binstall helix
-
-print "stow..."
-cd $HOME/dotfiles
-stow */
 
 print "🎉 Done!"
 
