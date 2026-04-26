@@ -54,7 +54,7 @@ binds {
 
     // ─── Applications ───
     MOD+RETURN hotkey-overlay-title="Open Terminal" {
-        spawn-sh "wezterm";
+        spawn-sh "ghostty";
     }
     MOD+B hotkey-overlay-title="Open Browser" {
          spawn-sh "/opt/google/chrome/chrome";
@@ -188,6 +188,12 @@ spawn-at-startup "dms" "run"
 prefer-no-csd
 screenshot-path null // Disable screenshot saving
 
+window-rule {
+    background-effect {
+        blur true
+    }
+}
+
 // Picture-in-picture
 window-rule {
     match title="^Picture-in-picture$"
@@ -222,14 +228,6 @@ window-rule {
     draw-border-with-background false
     geometry-corner-radius 12
     clip-to-geometry true
-}
-
-// WezTerm
-window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    draw-border-with-background false
-    default-column-width {}
-    scroll-factor 0.5
 }
 
 // ────────────── Environment Variables ──────────────
