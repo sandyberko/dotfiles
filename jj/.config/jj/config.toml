@@ -4,3 +4,7 @@ default-command = "status"
 [user]
 name = "Sandy Berkowitz"
 email = "sandyberko@outlook.com"
+
+[aliases]
+fetch = ["git", "fetch"]
+push = ["git", "push"]
