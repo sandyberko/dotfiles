@@ -38,7 +38,7 @@ output "eDP-1" {
 // virtual display for Apollo/Sunshine
 output "HDMI-A-1" {
     mode "3840x2160@120.00"
-    scale 1.5
+    scale 2
     variable-refresh-rate
 }
 
@@ -188,11 +188,11 @@ spawn-at-startup "dms" "run"
 prefer-no-csd
 screenshot-path null // Disable screenshot saving
 
-window-rule {
-    background-effect {
-        blur true
-    }
-}
+// window-rule {
+//     background-effect {
+//         blur true
+//     }
+// }
 
 // Picture-in-picture
 window-rule {
@@ -214,14 +214,14 @@ window-rule {
 }
 
 // MultiViewer
-window-rule {
-    match app-id="^MultiViewer$"
+// window-rule {
+//     match app-id="^MultiViewer$"
 
-    open-floating true
-    default-floating-position x=0 y=0 relative-to="top-right"
-    default-column-width { proportion 0.25; }
-    default-window-height { proportion 0.33; }
-}
+//     open-floating true
+//     default-floating-position x=0 y=0 relative-to="top-right"
+//     default-column-width { proportion 0.25; }
+//     default-window-height { proportion 0.33; }
+// }
 
 window-rule {
     match app-id=r#"^org\.gnome\."#
