@@ -54,7 +54,7 @@ binds {
 
     // ─── Applications ───
     MOD+RETURN hotkey-overlay-title="Open Terminal" {
-        spawn-sh "ghostty";
+        spawn-sh "wezterm";
     }
     MOD+B hotkey-overlay-title="Open Browser" {
          spawn-sh "/opt/google/chrome/chrome";
@@ -188,11 +188,18 @@ spawn-at-startup "dms" "run"
 prefer-no-csd
 screenshot-path null // Disable screenshot saving
 
-// window-rule {
-//     background-effect {
-//         blur true
-//     }
-// }
+window-rule {
+    background-effect {
+        blur true
+    }
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
 
 // Picture-in-picture
 window-rule {
@@ -206,11 +213,6 @@ window-rule {
 window-rule {
     match app-id="^chrome-lodlkdfmihgonocnmddehnfgiljnadcf-Default$"
     default-column-width { fixed 565; }
-}
-
-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
 }
 
 // MultiViewer
