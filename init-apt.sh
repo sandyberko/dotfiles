@@ -18,6 +18,7 @@ yes | sudo apt install -y \
 	git \
 	stow \
 	curl \
+	zoxide \
 	|| true
 
 print "dotfiles..."

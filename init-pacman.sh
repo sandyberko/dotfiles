@@ -10,6 +10,7 @@ pacman -Syu \
   nushell \
   helix \
   starship \
+  zoxide \
   rustup
 
 source ./init-repo.sh
