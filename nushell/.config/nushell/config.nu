@@ -7,6 +7,9 @@ alias cfg = git --git-dir=($env.HOME)/.dotfiles/ --work-tree=($env.HOME)
 $env.Path ++= [$"($env.HOME)/.cargo/bin"]
 $env.CARGO_TARGET_DIR = ($env.HOME)/.cargo/target
 
+# dotnet
+$env.Path ++= [$"($env.HOME)/.dotnet/tools"]
+
 # android dev
 $env.JAVA_HOME = "/usr/lib/jvm/java-17-openjdk"
 $env.ANDROID_HOME = $"/opt/android-sdk"

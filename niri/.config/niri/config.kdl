@@ -217,14 +217,28 @@ window-rule {
 }
 
 // MultiViewer
-// window-rule {
-//     match app-id="^MultiViewer$"
+window-rule {
+    match app-id="^MultiViewer$"
 
-//     open-floating true
-//     default-floating-position x=0 y=0 relative-to="top-right"
-//     default-column-width { proportion 0.25; }
-//     default-window-height { proportion 0.33; }
-// }
+    background-effect {
+        blur false
+    }
+}
+
+window-rule {
+    match app-id="^MultiViewer$" title="Track Map"
+
+    opacity 0.5
+    open-floating true
+}
+
+window-rule {
+    match app-id="^MultiViewer$" title="F1 Live"
+
+    open-on-output "HDMI-A-1"
+    open-fullscreen true 
+}
+
 
 window-rule {
     match app-id=r#"^org\.gnome\."#
