@@ -20,9 +20,9 @@
 "string.special.symbol" = "cyan30"
 "string.special.url" = { fg = "blue30", modifiers = ["underlined"] }
 
-"comment" = { fg = "gray40", modifiers = ["italic"] }
-"comment.block.documentation" = { fg = "gray40", modifiers = ["italic"] }
-"comment.line.documentation" = { fg = "gray40", modifiers = ["italic"] }
+"comment" = { fg = "gray50", modifiers = ["italic"] }
+"comment.block.documentation" = { fg = "gray50", modifiers = ["italic"] }
+"comment.line.documentation" = { fg = "gray50", modifiers = ["italic"] }
 
 "variable" = "gray70"
 "variable.builtin" = { fg = "cyan30", modifiers = ["bold"] }
