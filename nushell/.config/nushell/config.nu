@@ -7,6 +7,9 @@ alias cfg = git --git-dir=($env.HOME)/.dotfiles/ --work-tree=($env.HOME)
 $env.Path ++= [$"($env.HOME)/.cargo/bin"]
 $env.CARGO_TARGET_DIR = ($env.HOME)/.cargo/target
 
+# Homebrew
+$env.PATH ++= ["/home/linuxbrew/.linuxbrew/bin", "/home/linuxbrew/.linuxbrew/sbin"]
+
 # dotnet
 $env.Path ++= [$"($env.HOME)/.dotnet/tools"]
 
