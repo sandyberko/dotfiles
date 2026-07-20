@@ -42,4 +42,13 @@ def --env mkcd [directory: path] {
     mkdir $directory
     cd $directory
 }
+
+def re [command: closure] {
+    loop {
+        clear;
+        try { do $command }
+        input;
+    }
+}
+
 # source "~/.cargo/env.nu"
