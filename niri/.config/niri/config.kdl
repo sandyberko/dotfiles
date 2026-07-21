@@ -8,7 +8,6 @@ input {
     keyboard {
         xkb {
             layout "us,il"
-            variant ",si2"
             options "grp:alt_shift_toggle"
         }
         track-layout "window"
