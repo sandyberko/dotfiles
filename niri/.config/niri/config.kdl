@@ -48,9 +48,9 @@ output "HDMI-A-1" {
 binds {
     MOD+SHIFT+ESCAPE { show-hotkey-overlay; }
 
-    MOD+A hotkey-overlay-title="Power Menu" {
-        spawn "dms" "ipc" "call" "powermenu" "toggle"
-    }
+    // MOD+A hotkey-overlay-title="Power Menu" {
+    //     spawn "dms" "ipc" "call" "powermenu" "toggle"
+    // }
 
     // ─── Applications ───
     MOD+RETURN hotkey-overlay-title="Open Terminal" {
@@ -183,17 +183,24 @@ binds {
 // ────────────── Startup Applications ──────────────
 spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &"
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
-spawn-at-startup "dms" "run"
+// spawn-at-startup "dms" "run"
     
 prefer-no-csd
 screenshot-path null // Disable screenshot saving
+
+layout {
+    gaps 4
+}
 
 window-rule {
     background-effect {
         blur true
     }
-    geometry-corner-radius 12
+    geometry-corner-radius 10
     clip-to-geometry true
+    focus-ring {
+        width 1
+    }
 }
 
 window-rule {
@@ -262,9 +269,13 @@ hotkey-overlay {
     skip-at-startup
 }
 
-include "dms/colors.kdl"
-include "dms/layout.kdl"
-include "dms/binds.kdl"
-include "dms/alttab.kdl"
+// include "dms/colors.kdl"
+// include "dms/layout.kdl"
+// include "dms/binds.kdl"
+// include "dms/alttab.kdl"
 
-include "dms/outputs.kdl"
+// include "dms/outputs.kdl"
+
+include "noctalia/config.kdl"
+
+include "noctalia.kdl"
