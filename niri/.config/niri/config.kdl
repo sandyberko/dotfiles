@@ -222,24 +222,25 @@ window-rule {
     default-column-width { fixed 565; }
 }
 
-// MultiViewer
+// multiviewer
 window-rule {
-    match app-id="^MultiViewer$"
+    match app-id="^multiviewer$"
 
     background-effect {
         blur false
+        xray false
     }
 }
 
 window-rule {
-    match app-id="^MultiViewer$" title="Track Map"
+    match app-id="^multiviewer$" title="Track Map"
 
-    opacity 0.5
+    opacity 0.2
     open-floating true
 }
 
 window-rule {
-    match app-id="^MultiViewer$" title="F1 Live"
+    match app-id="^multiviewer$" title="F1 Live"
 
     open-on-output "HDMI-A-1"
     open-fullscreen true 
