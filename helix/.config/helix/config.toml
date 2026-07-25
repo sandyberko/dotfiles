@@ -4,6 +4,7 @@ theme = "trans_carb"
 default-line-ending = "lf"
 shell = ["nu", "-c"]
 color-modes = true
+bufferline = "multiple"
 
 [editor.inline-diagnostics]
 cursor-line = "hint"
