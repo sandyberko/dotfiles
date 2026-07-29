@@ -1,14 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
-print() {
-    local BLUE_BOLD="\033[1;34m"
-    local RESET="\033[0m"
-    echo -e "🔷 ${BLUE_BOLD}$*${RESET}"
-}
-
-cd $HOME
+. init-common.sh
 
 print "apt..."
 sudo apt update
@@ -19,30 +11,23 @@ yes | sudo apt install -y \
 	stow \
 	curl \
 	zoxide \
+	hx \
+	tmux \
 	|| true
 
-print "dotfiles..."
-git clone https://github.com/sandyberko/dotfiles
-cd dotfiles
+print "stow..."
 stow */
 
-print "rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source $HOME/.cargo/env
+homebrew_install
 
-print "cargo binstall..."
-curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+print "brew install..."
+$BREW install \
+	nushell \
+	starship \
+	jujutsu
 
-print "nushell..."
-cargo binstall nu
-sudo add-shell $HOME/.cargo/bin/nu
-sudo chsh -s $HOME/.cargo/bin/nu $USER 
-
-print "starship..."
-cargo binstall starship
-
-print "helix..."
-cargo binstall helix
+# sudo add-shell $HOME/.cargo/bin/nu
+# sudo chsh -s $HOME/.cargo/bin/nu $USER 
 
 print "🎉 Done!"
 
