@@ -68,3 +68,28 @@ alias zi = __zoxide_zi
 #   source ~/.zoxide.nu
 #
 # Note: zoxide only supports Nushell v0.89.0+.
+
+def zmux [project?: string] {
+  let session_name = match $project {
+    null => {
+      zi
+      (pwd | path parse | get stem)
+    }
+    _ => {
+      z $project
+      $project
+    }
+  }
+
+  let session_exists = (
+    ^tmux has-session -t $session_name
+    | complete
+    | get exit_code
+  ) == 0
+
+  if $session_exists {
+    ^tmux attach-session -t $session_name
+  } else {
+    ^tmux new-session -s $session_name hx
+  }
+}

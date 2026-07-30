@@ -5,13 +5,15 @@ default-line-ending = "lf"
 shell = ["nu", "-c"]
 color-modes = true
 bufferline = "multiple"
+true-color = true
+mouse = true
 
 [editor.inline-diagnostics]
 cursor-line = "hint"
 other-lines = "warning"
 
 [editor.statusline]
-right = ["workspace-diagnostics", "selections", "register", "position", "file-encoding"]
+right = ["version-control", "workspace-diagnostics", "selections", "register", "position", "file-encoding"]
 
 [editor.lsp]
 display-progress-messages = true
@@ -23,3 +25,5 @@ select = "underline"
 
 [keys.normal]
 C-a = "completion"
+A-h = "goto_previous_buffer"
+A-l = "goto_next_buffer"
