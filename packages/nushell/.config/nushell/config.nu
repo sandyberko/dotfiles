@@ -1,7 +1,6 @@
 $env.PATH ++= [$"($env.HOME)/.local/bin/"]
 
 $env.EDITOR = "hx"
-alias cfg = git --git-dir=($env.HOME)/.dotfiles/ --work-tree=($env.HOME)
 
 # Rust
 $env.Path ++= [$"($env.HOME)/.cargo/bin"]
@@ -17,6 +16,10 @@ $env.Path ++= [$"($env.HOME)/.dotnet/tools"]
 $env.JAVA_HOME = "/usr/lib/jvm/java-17-openjdk"
 $env.ANDROID_HOME = $"/opt/android-sdk"
 $env.Path ++= [$"($env.ANDROID_HOME)/platform-tools/"]
+
+def fg [id?] {
+    job unfreeze $id
+}
 
 $env.config.show_banner = false
 
@@ -50,5 +53,3 @@ def re [command: closure] {
         input;
     }
 }
-
-# source "~/.cargo/env.nu"
