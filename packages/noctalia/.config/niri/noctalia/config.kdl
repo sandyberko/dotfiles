@@ -10,11 +10,12 @@ binds {
     // Core Noctalia binds
     Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S     { spawn-sh "noctalia msg panel-toggle control-center"; }
-    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
     Mod+A     { spawn-sh "noctalia msg panel-toggle session"; }
-    Mod+Z     { spawn-sh "noctalia msg notification-clear-active"; }
     Mod+V     { spawn-sh "noctalia msg panel-toggle clipboard"; }
-    // Mod+N     { spawn-sh "noctalia msg panel-toggle notifications"; }
+    Mod+N     { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
+
+    Mod+Z     { spawn-sh "noctalia msg notification-clear-active"; }
+    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
 
     // Audio & Brightness
     XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
