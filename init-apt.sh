@@ -11,12 +11,13 @@ yes | sudo apt install -y \
 	stow \
 	curl \
 	zoxide \
+	fzf \
 	hx \
 	tmux \
 	|| true
 
 print "stow..."
-stow */
+(cd ~/Projects/dotfiles/packages/ && stow -t ~ *)
 
 homebrew_install
 
