@@ -1,4 +1,4 @@
-$env.PATH ++= [$"($env.HOME)/.local/bin/"]
+$env.Path ++= [$"($env.HOME)/.local/bin/"]
 
 $env.EDITOR = "hx"
 
@@ -7,7 +7,7 @@ $env.Path ++= [$"($env.HOME)/.cargo/bin"]
 $env.CARGO_TARGET_DIR = ($env.HOME)/.cargo/target
 
 # Homebrew
-$env.PATH ++= ["/home/linuxbrew/.linuxbrew/bin", "/home/linuxbrew/.linuxbrew/sbin"]
+$env.Path ++= ["/home/linuxbrew/.linuxbrew/bin", "/home/linuxbrew/.linuxbrew/sbin"]
 
 # dotnet
 $env.Path ++= [$"($env.HOME)/.dotnet/tools"]
