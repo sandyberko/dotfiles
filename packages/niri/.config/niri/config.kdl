@@ -20,7 +20,6 @@ input {
         scroll-factor 0.1
     }
 
-    focus-follows-mouse // Automatically focus windows under the mouse pointer
     workspace-auto-back-and-forth // Enable workspace back & forth switching
 }
 
