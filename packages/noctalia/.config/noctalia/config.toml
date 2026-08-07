@@ -1,13 +1,29 @@
 [shell]
+button_borders = false
+card_borders = false
+font_family = "Roboto"
 niri_overview_type_to_launch_enabled = true
+popup_borders = false
+telemetry_enabled = true
+
+[theme]
+builtin = "Dracula"
+source = "wallpaper"
 
 [bar.main]
 position = "right"
-thickness = 30
+background_opacity = 0.6
+border = "on_surface_variant"
+border_width = 1.5
+thickness = 40
+widget_spacing = 12
 margin_ends = 4
 margin_opposite_edge = 4
 margin_edge = 4
+padding = 12
 concave_edge_corners = false
+font_family = "Roboto"
+font_weight = 400
 
 start = ["launcher", "workspaces", "taskbar"]
 center = []
@@ -21,3 +37,12 @@ end = [
   "battery",
   "session",
 ]
+
+[plugins]
+enabled = [ "noctalia/bitwarden", "nzlov/daily-wallpaper" ]
+
+[calendar]
+enabled = true
+
+    [calendar.account.google_alex01berko]
+    type = "google"
